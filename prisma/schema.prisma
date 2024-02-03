@@ -20,14 +20,6 @@ model Users {
   task          Tasks[]
 }
 
-model Auth {
-  id            Int      @id @default(autoincrement())
-  user_id       Int
-  token         String
-  expired_date  DateTime
-  user          Users @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade) 
-}
-
 model Categories {
   id            Int      @id @default(autoincrement())
   name          String

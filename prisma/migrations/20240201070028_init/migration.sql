@@ -10,16 +10,6 @@ CREATE TABLE "Users" (
 );
 
 -- CreateTable
-CREATE TABLE "Auth" (
-    "id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "token" TEXT NOT NULL,
-    "expired_date" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "Auth_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Categories" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
@@ -46,9 +36,6 @@ CREATE UNIQUE INDEX "Users_username_key" ON "Users"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Users_email_key" ON "Users"("email");
-
--- AddForeignKey
-ALTER TABLE "Auth" ADD CONSTRAINT "Auth_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Tasks" ADD CONSTRAINT "Tasks_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

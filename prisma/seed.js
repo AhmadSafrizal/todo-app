@@ -21,22 +21,6 @@ async function seed() {
       ],
     });
 
-    // Seeder for Auth table
-    await prisma.auth.createMany({
-      data: [
-        {
-          user_id: 1,
-          token: "token1",
-          expired_date: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-        },
-        {
-          user_id: 2,
-          token: "token2",
-          expired_date: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-        },
-      ],
-    });
-
     // Seeder for Categories table
     await prisma.categories.createMany({
       data: [{ name: "Category A" }, { name: "Category B" }],
