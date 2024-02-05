@@ -21,7 +21,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:5000/api",
+        url: "http://localhost:5000",
       },
     ],
     tags: [
@@ -847,7 +847,7 @@ const options = {
 
       // Login User
       "/user/login": {
-        get: {
+        post: {
           summary: "Login User",
           description: "Login user",
           parameters: [
@@ -904,7 +904,7 @@ const options = {
       },
     },
   },
-  apis: ["./app/**/*.js"],
+  apis: ["./routes/index.js", "./app.js"],
 };
 
 const swaggerDocs = swaggerJsDoc(options);
