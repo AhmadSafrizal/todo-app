@@ -1,4 +1,4 @@
-const CustomAPIError = require("../middlewares/custom-error");
+const {CustomAPIError, handleError} = require("../middlewares/custom-error");
 const taskServices = require("../services/task.service");
 
 const getAllTask = async (req, res) => {
@@ -15,10 +15,7 @@ const getAllTask = async (req, res) => {
       data: tasks,
     });
   } catch (error) {
-    throw new CustomAPIError(
-      `Error: ${error.message}`,
-      error.statusCode || 500
-    );
+    handleError(res, error);
   }
 };
 
@@ -34,7 +31,7 @@ const getOneTask = async (req, res) => {
       data: tasks,
     });
   } catch (error) {
-    throw error;
+    handleError(res, error);
   }
 };
 
@@ -50,10 +47,7 @@ const newTask = async (req, res) => {
       data: tasks,
     });
   } catch (error) {
-    throw new CustomAPIError(
-      `Error creating task: ${error.message}`,
-      error.statusCode || 500
-    );
+    handleError(res, error);
   }
 };
 
@@ -68,10 +62,7 @@ const updateTask = async (req, res) => {
       data: updatedTasks,
     });
   } catch (error) {
-    throw new CustomAPIError(
-      `Error: ${error.message}`,
-      error.statusCode || 500
-    );
+    handleError(res, error);
   }
 };
 
@@ -86,7 +77,7 @@ const deleteTask = async (req, res) => {
       data: tasks,
     });
   } catch (error) {
-    throw new CustomAPIError(`Error: ${error.message}`, 500);
+    handleError(res, error);
   }
 };
 

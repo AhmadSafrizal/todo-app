@@ -21,7 +21,7 @@ const findUserById = async (id) => {
   }
 };
 
-const getUser = async (data) => {
+const getUser = async (data, req) => {
   const { username, password } = data;
   if (!username) {
     throw new CustomAPIError("Invalid username or password", 401);
@@ -50,7 +50,11 @@ const getUser = async (data) => {
   // Generate JWT token
   const token = generateToken(user);
 
-  return token;
+  if (req && req.session) {
+    req.session.userId = user.id;
+  }
+
+  return { token, userId: user.id };
 };
 
 const postUser = async (data) => {

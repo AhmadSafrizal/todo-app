@@ -5,4 +5,12 @@ class CustomAPIError extends Error {
         this.statusCode = statusCode;
     }
 }
-module.exports = CustomAPIError;
+
+const handleError = (res, error) => {
+    res.status(error.statusCode || 500).json({
+      status: "error",
+      message: `Error: ${error.message}`,
+    });
+  };
+
+module.exports = {CustomAPIError, handleError};

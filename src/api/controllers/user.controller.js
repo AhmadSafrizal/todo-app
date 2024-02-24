@@ -25,11 +25,12 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  const token = await userServices.getUser(req.body);
+  const tokenData = await userServices.getUser(req.body, req);
+  const { token, userId } = tokenData;
   return res.json({
     status: "success",
     message: "User is credential matched! Here is your token",
-    data: token,
+    data: { token, userId },
   });
 };
 
